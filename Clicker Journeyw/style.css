@@ -1,0 +1,849 @@
+/* style.css */
+
+/* --- GENERAL STYLES & RESET --- */
+body {
+    font-family: 'Poppins', sans-serif; /* Font modern Poppins */
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #1a2a3a 0%, #2a3a4a 100%); /* Latar belakang gradien biru gelap keabu-abuan */
+    color: #e0e0e0; /* Warna teks terang netral */
+    display: flex; /* Gunakan flexbox untuk memposisikan main-layout-wrapper */
+    justify-content: center; /* Pusatkan secara horizontal */
+    align-items: flex-start; /* Taruh di atas secara vertikal */
+    min-height: 100vh;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+/* Layout utama untuk menampung panel dev dan game container */
+.main-layout-wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 1100px; /* Batasi lebar total wrapper */
+    min-height: 100vh;
+    background-color: #212121; /* Latar belakang abu-abu gelap untuk container utama */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Bayangan lebih kuat */
+    margin: 20px; /* Tambahkan margin agar tidak terlalu mepet ke sisi browser */
+    border-radius: 15px; /* Bulatkan semua sudut wrapper */
+    overflow: hidden; /* Pastikan sudut yang dibulatkan terlihat */
+}
+
+/* Game Container - Sekarang lebih kecil dan di tengah (karena flexbox parent) */
+.game-container {
+    background-color: #333; /* Warna latar belakang game yang lebih gelap */
+    border-radius: 0; /* Hapus border-radius karena sudah di wrapper */
+    box-shadow: none; /* Hapus bayangan karena sudah di wrapper */
+    padding: 30px;
+    width: 100%;
+    max-width: 700px; /* Lebar maksimum lebih kecil */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Jarak antar section */
+    position: relative;
+    border-left: 1px solid rgba(255, 255, 255, 0.08); /* Border tipis samar di kiri */
+    flex-shrink: 0;
+    flex-grow: 1; /* Biarkan tumbuh mengisi sisa ruang di wrapper */
+}
+
+/* Developer Panel - Sekarang di kiri */
+.developer-panel {
+    background-color: #2b2b2b; /* Warna latar belakang panel dev yang gelap */
+    border-radius: 0; /* Hapus border-radius karena sudah di wrapper */
+    box-shadow: none; /* Hapus bayangan karena sudah di wrapper */
+    padding: 25px;
+    min-width: 280px; /* Lebar panel developer */
+    max-width: 280px;
+    color: #eee;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-right: 1px solid rgba(255, 255, 255, 0.08); /* Border tipis samar di kanan */
+    transform: translateX(-100%); /* Default: tersembunyi off-screen */
+    transition: transform 0.4s ease-out; /* Animasi geser */
+    z-index: 100;
+}
+
+/* Kelas untuk menampilkan panel developer */
+.developer-panel.show {
+    transform: translateX(0); /* Geser masuk */
+}
+
+/* Untuk layar yang lebih besar, tampilkan panel secara default */
+@media (min-width: 993px) {
+    .developer-panel {
+        transform: translateX(0); /* Selalu terlihat di desktop */
+    }
+}
+
+/* For smaller screens, hide the panel by default and slide in */
+@media (max-width: 992px) {
+    .developer-panel {
+        position: fixed; /* Jadikan fixed agar bisa geser dari samping */
+        top: 0;
+        left: 0;
+        height: 100%;
+        max-width: 300px; /* Batasi lebar */
+        border-radius: 0 15px 15px 0; /* Sudut di sisi kanan panel */
+        z-index: 1000;
+        padding-top: 60px; /* Beri ruang untuk tombol tutup */
+        box-shadow: 0 0 20px rgba(0,0,0,0.5); /* Tambahkan bayangan saat tersembunyi */
+        border: none; /* Hapus border karena sudah ada box-shadow */
+    }
+
+    .main-layout-wrapper {
+        flex-direction: column; /* Ubah ke tumpukan vertikal */
+        max-width: 90%; /* Sesuaikan lebar wrapper untuk mobile */
+        margin: 20px auto; /* Pusatkan secara horizontal */
+        border-radius: 15px; /* Pastikan tetap bulat di mobile */
+    }
+
+    .game-container {
+        border-radius: 15px; /* Bulatkan semua sudut saat bertumpuk */
+        border-left: none; /* Hapus border kiri */
+    }
+}
+
+
+.developer-panel h3 {
+    color: #64b5f6; /* Biru cerah untuk judul dev panel */
+    border-bottom: 1px solid #424242; /* Garis bawah yang lebih gelap */
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.developer-panel h4 {
+    color: #90caf9; /* Biru muda untuk sub-judul dev panel */
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    font-weight: 600;
+    border-bottom: 1px dashed #424242;
+    padding-bottom: 5px;
+}
+
+.dev-controls {
+    flex-grow: 1; /* Biarkan kontrol mengisi ruang yang tersedia */
+    overflow-y: auto; /* Aktifkan scroll jika konten terlalu panjang */
+    padding-right: 10px; /* Padding untuk scrollbar */
+}
+
+/* Gaya untuk scrollbar kustom di panel dev */
+.dev-controls::-webkit-scrollbar {
+    width: 8px;
+}
+
+.dev-controls::-webkit-scrollbar-track {
+    background: #3a3a3a;
+    border-radius: 10px;
+}
+
+.dev-controls::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 10px;
+    border: 2px solid #3a3a3a;
+}
+
+.dev-controls::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
+
+
+/* Tombol tutup panel dev */
+.close-dev-panel-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 2em;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: color 0.2s ease;
+    box-shadow: none; /* Hapus bayangan default tombol */
+}
+
+.close-dev-panel-btn:hover {
+    color: #fff;
+    transform: scale(1.1);
+}
+
+/* --- TYPOGRAPHY & HEADINGS --- */
+h1.game-title {
+    color: #e0e0e0; /* Warna terang untuk judul utama */
+    text-align: center;
+    font-size: 2.8em; /* Ukuran sedikit lebih kecil */
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+h2, h3 {
+    color: #c0c0c0; /* Warna terang untuk sub-judul */
+    font-size: 1.8em; /* Ukuran sedikit lebih kecil */
+    margin-bottom: 18px;
+    border-bottom: 1px solid #444; /* Garis bawah yang lebih gelap */
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1.3em;
+    color: #a0a0a0;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+h2 i, h3 i {
+    color: #64b5f6; /* Biru cerah untuk ikon di heading */
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 10px;
+    color: #b0b0b0;
+}
+
+/* --- BUTTON STYLES --- */
+button {
+    font-family: 'Poppins', sans-serif; /* Pastikan font Poppins pada tombol */
+    background-color: #64b5f6; /* Biru cerah untuk tombol standar */
+    color: white;
+    border: none;
+    padding: 12px 25px; /* Padding sedikit berkurang */
+    border-radius: 6px; /* Sudut sedikit lebih kecil */
+    cursor: pointer;
+    font-size: 1em; /* Ukuran font sedikit lebih kecil */
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.5px;
+}
+
+button:hover {
+    background-color: #42a5f5; /* Biru sedikit lebih gelap saat hover */
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+button:disabled {
+    background-color: #555; /* Abu-abu gelap untuk tombol nonaktif */
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    color: #888;
+    opacity: 0.6;
+}
+
+/* Specific button styles */
+.main-click-btn {
+    background: linear-gradient(45deg, #aed581 0%, #8bc34a 100%); /* Gradien hijau lebih lembut */
+    font-size: 2em; /* Ukuran sedikit lebih kecil */
+    padding: 30px 60px;
+    border-radius: 50%;
+    width: 200px; /* Ukuran tombol klik lebih kecil */
+    height: 200px;
+    border: 3px solid #689f38; /* Border hijau gelap */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); /* Bayangan lebih kuat */
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); }
+    100% { transform: scale(1.02); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5); }
+}
+
+.main-click-btn:hover {
+    background: linear-gradient(45deg, #c5e1a5 0%, #9ccc65 100%);
+    transform: scale(1.03);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+}
+
+.upgrade-btn {
+    background-color: #795548; /* Cokelat netral untuk upgrade */
+    margin: 6px;
+    min-width: unset; /* Hapus min-width */
+    width: 100%; /* Lebar penuh dalam flex container */
+    max-width: 250px; /* Batasi lebar agar tidak terlalu besar */
+}
+
+.upgrade-btn:hover {
+    background-color: #6d4c41;
+}
+
+/* Purchased button style */
+.upgrade-btn.purchased {
+    background-color: #696969; /* Abu-abu gelap untuk tombol yang sudah dibeli */
+    color: #ccc;
+    cursor: default;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.3); /* Bayangan ke dalam */
+    border: 1px solid #555;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+}
+
+.upgrade-btn.purchased:hover {
+    transform: none;
+    background-color: #696969;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.utility-btn {
+    background-color: #ffb300; /* Oranye untuk tombol utilitas */
+    margin-top: 15px;
+    color: #fff;
+    width: 100%; /* Lebar penuh */
+}
+
+.utility-btn:hover {
+    background-color: #fb8c00;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    color: #b0b0b0; /* Abu-abu terang untuk ikon */
+    font-size: 1.2em;
+    padding: 5px;
+    box-shadow: none;
+}
+
+.icon-btn:hover {
+    color: #64b5f6; /* Biru cerah saat hover */
+    transform: scale(1.1);
+}
+
+/* Toggle AutoClick Button specific states */
+.auto-click-toggle.active {
+    background-color: #4CAF50; /* Hijau saat aktif */
+}
+.auto-click-toggle.active:hover {
+    background-color: #388e3c;
+}
+.auto-click-toggle:not(.active) {
+    background-color: #ef5350; /* Merah saat tidak aktif */
+}
+.auto-click-toggle:not(.active):hover {
+    background-color: #e53935;
+}
+
+
+/* --- LAYOUT SECTIONS --- */
+.header {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #444;
+}
+
+.player-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.player-info {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.player-stats {
+    font-size: 1.2em;
+    color: #b0b0b0;
+}
+
+/* VIP Specific Styling */
+.player-name.vip {
+    color: #ffea00; /* Kuning terang untuk nama VIP */
+    text-shadow: 0 0 8px rgba(255, 234, 0, 0.6); /* Sedikit kilauan lebih kuat */
+}
+
+.player-icon {
+    margin-right: 6px;
+    color: #ffea00; /* Warna mahkota VIP */
+}
+
+
+.click-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-height: 220px; /* Tinggi area klik lebih kecil */
+}
+
+/* --- SCORE EFFECT ANIMATION --- */
+.score-effect-container {
+    position: absolute;
+    /* Adjust positioning to be relative to the click button */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center it on the button */
+    pointer-events: none;
+    overflow: hidden;
+    width: 250px; /* Make it slightly larger than the button to allow movement */
+    height: 250px;
+    z-index: 1;
+}
+
+.score-effect {
+    position: absolute;
+    font-size: 1.6em; /* Ukuran sedikit lebih kecil */
+    font-weight: 600;
+    color: #aed581; /* Warna hijau tombol utama */
+    opacity: 0;
+    pointer-events: none;
+    animation: fadeOutUp 1s ease-out forwards;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    white-space: nowrap;
+    /* Center origin of score effect relative to its container */
+    transform: translate(-50%, -50%);
+}
+
+@keyframes fadeOutUp {
+    0% {
+        transform: translate(-50%, -50%) translateY(0); /* Start centered */
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) translateY(-50px); /* Move up */
+        opacity: 0;
+    }
+}
+/* --- END SCORE EFFECT ANIMATION --- */
+
+
+.upgrades-section, .shop-section, .rebirth-section {
+    background-color: #444; /* Latar belakang bagian yang lebih gelap */
+    padding: 20px; /* Padding sedikit berkurang */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border: 1px solid #555;
+}
+
+.gamepass-buttons, .shop-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px; /* Jarak antar tombol sedikit berkurang */
+    margin-top: 15px;
+}
+
+.shop-item {
+    background-color: #4a4a4a; /* Latar belakang item shop yang lebih gelap */
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    max-width: 280px; /* Ukuran item shop lebih kecil */
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
+    border: 1px solid #555;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.shop-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
+}
+
+.shop-item p {
+    font-size: 0.95em;
+    color: #ccc;
+    flex-grow: 1;
+    margin-bottom: 15px;
+}
+
+.shop-item .upgrade-btn {
+    width: auto;
+    margin-top: auto;
+    background-color: #26a69a; /* Warna khusus untuk tombol beli VIP (teal) */
+}
+
+.shop-item .upgrade-btn:hover {
+    background-color: #00897b;
+}
+
+.vip-current-bonus {
+    color: #ffd54f; /* Oranye untuk bonus VIP */
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.rebirth-section p {
+    text-align: center;
+    font-style: italic;
+    color: #ccc;
+    margin-top: 12px;
+    font-size: 1em;
+}
+
+#rebirthButtonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#rebirthButtonContainer button {
+    background-color: #ef5350; /* Merah standar untuk tombol Rebirth */
+    font-size: 1.2em;
+    padding: 15px 30px;
+    border: none;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+#rebirthButtonContainer button:hover {
+    background-color: #e53935;
+}
+
+/* --- DEVELOPER PANEL BUTTONS & INPUTS --- */
+.dev-input-group label {
+    color: #b0b0b0;
+    margin-bottom: 5px;
+    display: block; /* Make label block for better spacing */
+    font-size: 0.9em;
+}
+
+.dev-input-group input[type="text"],
+.dev-input-group input[type="number"],
+.dev-message-row input[type="text"] {
+    width: calc(100% - 20px); /* Sesuaikan lebar input */
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #555;
+    background-color: #3a3a3a;
+    color: #eee;
+    font-size: 0.9em;
+    font-family: 'Poppins', sans-serif; /* Pastikan font Poppins */
+}
+
+.dev-input-group input:focus,
+.dev-message-row input:focus {
+    border-color: #64b5f6;
+    box-shadow: 0 0 0 3px rgba(100, 181, 246, 0.3);
+    outline: none; /* Remove default outline */
+}
+
+.dev-btn {
+    background-color: #555; /* Abu-abu gelap untuk tombol dev */
+    padding: 8px 15px;
+    font-size: 0.9em;
+    width: 100%; /* Lebar penuh */
+}
+
+.dev-btn:hover {
+    background-color: #666;
+}
+
+.dev-btn.reset-btn {
+    background-color: #d32f2f; /* Merah untuk reset */
+}
+.dev-btn.reset-btn:hover {
+    background-color: #c62828;
+}
+
+.dev-gift-row, .dev-message-row, .dev-tools-row {
+    display: flex;
+    flex-direction: column; /* Ubah menjadi kolom */
+    gap: 8px; /* Jarak antar elemen dalam baris */
+    margin-bottom: 12px;
+    align-items: stretch; /* Regangkan item untuk mengisi lebar */
+}
+
+.dev-gift-row.gift-passes {
+    flex-direction: row; /* Biarkan gift passes tetap dalam baris */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px; /* Reduce gap for wrap */
+}
+
+.dev-gift-row.gift-passes .dev-btn {
+    width: auto; /* Biarkan tombol menyesuaikan konten */
+    flex-grow: 1; /* Biarkan mereka tumbuh untuk mengisi ruang */
+    min-width: 100px; /* Minimal width for gift passes buttons */
+    max-width: 120px;
+}
+
+/* Floating Developer Panel Button */
+.floating-dev-btn {
+    position: fixed; /* Fixed position so it stays visible */
+    bottom: 30px;
+    left: 30px; /* Pindah ke kiri */
+    background-color: #424242;
+    color: white;
+    width: 55px; /* Ukuran sedikit lebih kecil */
+    height: 55px;
+    font-size: 1.6em; /* Ukuran ikon lebih kecil */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    z-index: 1002; /* Pastikan di atas panel dev jika muncul */
+    border-radius: 50%; /* Bulat sempurna */
+}
+
+.floating-dev-btn:hover {
+    background-color: #212121;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* --- NOTIFICATION SYSTEM --- */
+.game-notification {
+    position: fixed;
+    top: 20px; /* Lebih dekat ke atas */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #424242; /* Abu-abu gelap untuk notifikasi */
+    color: white;
+    padding: 15px 25px; /* Padding sedikit berkurang */
+    border-radius: 8px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0.3s; /* Hide visibility after transition */
+    border: 1px solid #555;
+    font-size: 1em;
+    min-width: 250px; /* Minimum width for notifications */
+    text-align: center; /* Center text by default */
+}
+
+.game-notification.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Show visibility immediately */
+}
+
+/* Animasi masuk */
+.game-notification.show.slide-in {
+    animation: slideInNotification 0.3s ease-out forwards;
+}
+
+@keyframes slideInNotification {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Notification types styling */
+.game-notification.info { background-color: #424242; border-color: #555; }
+.game-notification.success { background-color: #4CAF50; border-color: #388E3C; }
+.game-notification.error { background-color: #ef5350; border-color: #d32f2f; }
+.game-notification.dev { background-color: #2196F3; border-color: #1976D2; } /* Biru untuk notifikasi dev */
+.game-notification.gift { background-color: #FFC107; color: #333; border-color: #FFA000; } /* Kuning untuk notifikasi hadiah */
+
+
+.close-notification-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+    padding: 0 6px;
+    transition: color 0.2s ease;
+    line-height: 1;
+}
+
+.close-notification-btn:hover {
+    color: #ffccbc;
+}
+
+/* --- HORIZONTAL RULE (HR) --- */
+hr {
+    border: none;
+    border-top: 1px solid #444;
+    margin: 25px 0; /* Margin sedikit berkurang */
+}
+
+/* --- RESPONSIVENESS --- */
+@media (max-width: 992px) { /* Breakpoint untuk tablet */
+    .main-layout-wrapper {
+        flex-direction: column; /* Ubah ke tumpukan vertikal */
+        border-radius: 15px; /* Bulatkan semua sudut */
+        max-width: 90%; /* Ambil lebar yang lebih besar */
+        margin: 20px auto; /* Pusatkan */
+    }
+
+    .game-container {
+        border-radius: 15px; /* Bulatkan semua sudut */
+        border-left: none; /* Hapus border kiri */
+    }
+
+    .developer-panel {
+        position: fixed; /* Jadikan fixed agar bisa geser dari samping */
+        top: 0;
+        left: 0;
+        height: 100%;
+        max-width: 300px; /* Batasi lebar */
+        border-radius: 0 15px 15px 0; /* Sudut di sisi kanan panel */
+        z-index: 1000;
+        padding-top: 60px; /* Beri ruang untuk tombol tutup */
+        box-shadow: 0 0 20px rgba(0,0,0,0.5); /* Tambahkan bayangan saat tersembunyi */
+        border-right: none; /* Hapus border kanan */
+    }
+
+    .floating-dev-btn {
+        bottom: 20px;
+        left: 20px;
+    }
+
+    .close-dev-panel-btn {
+        top: 10px;
+        right: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .game-container {
+        padding: 25px;
+        gap: 20px;
+    }
+
+    h1.game-title {
+        font-size: 2.2em;
+    }
+
+    h2 {
+        font-size: 1.6em;
+    }
+
+    .main-click-btn {
+        width: 160px;
+        height: 160px;
+        font-size: 1.8em;
+    }
+
+    .player-info {
+        font-size: 1.3em;
+    }
+
+    .player-stats {
+        font-size: 1.05em;
+    }
+
+    .upgrade-btn, .shop-item, .dev-btn {
+        font-size: 0.9em;
+        padding: 10px 15px;
+    }
+
+    .gamepass-buttons, .shop-items {
+        gap: 12px;
+    }
+
+    .shop-item {
+        max-width: 90%;
+    }
+
+    .game-notification {
+        width: 90%;
+        padding: 12px 18px;
+        top: 15px;
+        font-size: 0.95em;
+    }
+
+    .developer-panel {
+        max-width: 280px;
+        padding: 20px;
+    }
+    .dev-gift-row.gift-passes .dev-btn {
+        min-width: unset;
+        flex-grow: 1;
+        width: 100%;
+        max-width: none;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 0;
+    }
+    .main-layout-wrapper {
+        max-width: 100%; /* Ambil semua lebar */
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .game-container {
+        padding: 20px;
+        max-width: 100%; /* Ambil semua lebar */
+        border-radius: 0; /* Tidak ada sudut membulat */
+        margin: 0;
+        box-shadow: none;
+        border: none;
+    }
+
+    h1.game-title {
+        font-size: 1.8em;
+    }
+
+    h2 {
+        font-size: 1.4em;
+    }
+
+    .player-info {
+        font-size: 1.1em;
+    }
+
+    .player-stats {
+        font-size: 0.95em;
+    }
+
+    .main-click-btn {
+        width: 130px;
+        height: 130px;
+        font-size: 1.6em;
+    }
+
+    .upgrade-btn, .shop-item, .dev-btn {
+        font-size: 0.85em;
+        padding: 8px 12px;
+    }
+
+    .floating-dev-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.4em;
+        bottom: 15px;
+        left: 15px;
+    }
+    .game-notification {
+        width: 95%;
+        font-size: 0.9em;
+        padding: 10px 15px;
+    }
+}
+
+/* Font import dari Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
