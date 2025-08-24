@@ -9,12 +9,12 @@ const Game = {
     level: 1,
     playerName: "Player 1",
     // Kata sandi developer untuk edit profil. GANTI INI DENGAN KATA SANDI AMAN ANDA!
-    developerProfilePassword: "your_secret_dev_password", // <--- GANTI INI!
+    developerProfilePassword: "raka", // <--- GANTI INI!
                                                             // PERINGATAN: Kata sandi ini terlihat di kode sumber!
                                                             // Jangan gunakan kata sandi yang Anda pakai di tempat lain.
     isDeveloper: false,
     isDevPanelActive: false,
-    developerUsers: ["Developer1", "YourDevName", "Admin"], // <--- GANTI NAMA ANDA DI SINI!
+    developerUsers: ["Developer1", "raka", "Admin"], // <--- GANTI NAMA ANDA DI SINI!
 
     // Gamepass state
     hasGamepass: {
@@ -687,4 +687,5 @@ const Game = {
 // DOM Content
 document.addEventListener("DOMContentLoaded", () => {
     Game.init();
+
 });
