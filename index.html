@@ -1,0 +1,1403 @@
+/*
+
+ * CSS for Clicker Journey Game
+
+ * Made by Raka
+
+ */
+
+
+
+:root {
+
+    --primary-bg: #1a1a2e;
+
+    --secondary-bg: #16213e;
+
+    --text-color: #e0e0e0;
+
+    --accent-color: #0f3460;
+
+
+
+    --button-main: #e94560;
+
+    --button-main-hover: #cf3d53;
+
+    --button-upgrade: #533483;
+
+    --button-upgrade-hover: #452c6f;
+
+    --button-utility: #0f3460;
+
+    --button-utility-hover: #134b7f;
+
+
+
+    --button-red: #c0392b;
+
+    --button-green: #2ecc71;
+
+    --button-yellow: #f1c40f;
+
+
+
+    --panel-bg: #0c1527;
+
+    --border-color: #2e3b5e;
+
+
+
+    --notification-info: #3498db;
+
+    --notification-success: #27ae60;
+
+    --notification-warning: #f39c12;
+
+    --notification-error: #e74c3c;
+
+}
+
+
+
+body {
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    background: linear-gradient(135deg, var(--primary-bg) 0%, #0a0e1c 100%);
+
+    color: var(--text-color);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    min-height: 100vh;
+
+    margin: 0;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    overflow-x: hidden;
+
+    flex-direction: column; /* Mengatur item body sebagai kolom untuk footer */
+
+}
+
+
+
+.game-container {
+
+    background-color: var(--secondary-bg);
+
+    border-radius: 16px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+
+    padding: 30px;
+
+    text-align: center;
+
+    width: 100%;
+
+    max-width: 550px;
+
+    box-sizing: border-box;
+
+    position: relative;
+
+    border: 2px solid var(--border-color);
+
+    overflow: hidden;
+
+    margin-bottom: 20px; /* Tambahkan margin agar tidak menempel credit */
+
+}
+
+
+
+/* --- Support Developer UI --- */
+
+.developer-support {
+
+    position: fixed;
+
+    top: 20px;
+
+    left: 20px;
+
+    background-color: var(--panel-bg);
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 8px;
+
+    padding: 10px 15px;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+    z-index: 100;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 8px;
+
+    opacity: 0.95;
+
+    transition: opacity 0.3s ease;
+
+}
+
+
+
+.developer-support:hover {
+
+    opacity: 1;
+
+}
+
+
+
+.developer-support p {
+
+    margin: 0;
+
+    font-size: 0.9em;
+
+    color: #a0a0a0;
+
+}
+
+
+
+.developer-support a {
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    font-size: 1em;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    transition: color 0.2s ease;
+
+    color: var(--text-color);
+
+}
+
+
+
+.developer-support a:hover {
+
+    color: #f0f0f0;
+
+}
+
+
+
+/* Gaya khusus untuk Instagram */
+
+.developer-support a[href*="instagram.com"] {
+
+    color: #E1306C;
+
+}
+
+.developer-support a[href*="instagram.com"]:hover {
+
+    color: #ff69b4;
+
+}
+
+
+
+/* Gaya khusus untuk Saweria */
+
+.developer-support a[href*="saweria.co"] {
+
+    color: #4CAF50;
+
+}
+
+.developer-support a[href*="saweria.co"]:hover {
+
+    color: #66BB6A;
+
+}
+
+
+
+
+
+.developer-support a i {
+
+    font-size: 1.2em;
+
+}
+
+
+
+/* --- Game Credit --- */
+
+.game-credit {
+
+    color: #a0a0a0;
+
+    font-size: 0.9em;
+
+    margin-top: 20px;
+
+    text-align: center;
+
+    opacity: 0.7;
+
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+
+}
+
+
+
+/* ... (sisa CSS Anda di bawah ini) ... */
+
+
+
+h1 {
+
+    color: var(--button-main);
+
+    margin-bottom: 25px;
+
+    font-size: 2.8em;
+
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+
+    letter-spacing: 1px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+}
+
+h1 i {
+
+    color: var(--button-main);
+
+    font-size: 0.9em;
+
+}
+
+
+
+.profile-section {
+
+    margin-bottom: 20px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+}
+
+
+
+.profile-section p {
+
+    font-size: 1.2em;
+
+    margin: 0;
+
+    color: #a0a0a0;
+
+}
+
+
+
+.game-stats {
+
+    margin-bottom: 30px;
+
+    padding: 18px;
+
+    background-color: var(--panel-bg);
+
+    border-radius: 10px;
+
+    border: 1px solid var(--border-color);
+
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+
+}
+
+
+
+.game-info {
+
+    font-size: 1.6em;
+
+    font-weight: bold;
+
+    margin: 8px 0;
+
+    color: var(--button-green);
+
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+
+}
+
+
+
+.main-click-btn {
+
+    background-color: var(--button-main);
+
+    color: white;
+
+    padding: 22px 45px;
+
+    border: none;
+
+    border-radius: 60px;
+
+    font-size: 2em;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+
+    margin-bottom: 30px;
+
+    width: 85%;
+
+    max-width: 350px;
+
+    letter-spacing: 0.5px;
+
+}
+
+
+
+.main-click-btn:hover {
+
+    background-color: var(--button-main-hover);
+
+    transform: translateY(-3px) scale(1.02);
+
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+
+}
+
+
+
+.main-click-btn:active {
+
+    transform: translateY(1px);
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+}
+
+
+
+/* Score Effect Pop-up */
+
+#scoreEffectContainer {
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 50%;
+
+    width: 100%;
+
+    height: 100%;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+}
+
+
+
+.score-pop {
+
+    position: absolute;
+
+    font-size: 2em;
+
+    font-weight: bold;
+
+    color: var(--button-green);
+
+    opacity: 0;
+
+    transform: translate(-50%, -50%) scale(0.5);
+
+    animation: scorePop 0.8s forwards ease-out;
+
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+
+    pointer-events: none;
+
+    white-space: nowrap;
+
+}
+
+
+
+@keyframes scorePop {
+
+    0% {
+
+        opacity: 0;
+
+        transform: translate(-50%, -50%) scale(0.5);
+
+    }
+
+    30% {
+
+        opacity: 1;
+
+        transform: translate(-50%, -70%) scale(1.1);
+
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform: translate(-50%, -120%) scale(0.8);
+
+    }
+
+}
+
+
+
+.upgrades-section, .rebirth-section {
+
+    margin-bottom: 25px;
+
+    background-color: var(--panel-bg);
+
+    border-radius: 12px;
+
+    padding: 20px;
+
+    border: 1px solid var(--border-color);
+
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+
+}
+
+
+
+.upgrades-section h2, .rebirth-section h2, .developer-panel h3 {
+
+    color: var(--button-main);
+
+    margin-top: 0;
+
+    margin-bottom: 18px;
+
+    font-size: 2em;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+}
+
+.upgrades-section h2 i, .rebirth-section h2 i, .developer-panel h3 i {
+
+    color: var(--button-main);
+
+    font-size: 0.9em;
+
+}
+
+
+
+
+
+.gamepass-buttons {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-bottom: 18px;
+
+}
+
+
+
+.upgrade-btn, .utility-btn {
+
+    background-color: var(--button-upgrade);
+
+    color: white;
+
+    padding: 14px 20px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 1.1em;
+
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+
+}
+
+
+
+.upgrade-btn:hover, .utility-btn:hover:not(:disabled) {
+
+    background-color: var(--button-upgrade-hover);
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+
+}
+
+
+
+.upgrade-btn:active, .utility-btn:active:not(:disabled) {
+
+    transform: translateY(0);
+
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+
+}
+
+
+
+.upgrade-btn:disabled, .utility-btn:disabled {
+
+    background-color: #555;
+
+    cursor: not-allowed;
+
+    opacity: 0.7;
+
+    box-shadow: none;
+
+}
+
+
+
+/* Specific button colors */
+
+#editProfileBtn, #toggleDevPanelBtn {
+
+    background-color: var(--button-utility);
+
+}
+
+#editProfileBtn:hover, #toggleDevPanelBtn:hover {
+
+    background-color: var(--button-utility-hover);
+
+}
+
+
+
+#toggleAutoClickBtn {
+
+    background-color: var(--button-red);
+
+}
+
+
+
+#rebirthBtn {
+
+    background-color: var(--button-yellow);
+
+    color: var(--primary-bg);
+
+    font-weight: bold;
+
+    text-shadow: none;
+
+}
+
+#rebirthBtn:hover:not(:disabled) {
+
+    background-color: #d1b100;
+
+}
+
+#rebirthBtn:disabled {
+
+    background-color: #888;
+
+}
+
+
+
+/* --- NOTIFICATIONS --- */
+
+.game-notification {
+
+    position: fixed;
+
+    top: 25px;
+
+    left: 50%;
+
+    transform: translateX(-50%) translateY(-100px);
+
+    background-color: var(--notification-info);
+
+    color: white;
+
+    padding: 15px 25px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: opacity 0.4s ease-out, visibility 0.4s ease-out, transform 0.4s ease-out;
+
+    z-index: 1000;
+
+    min-width: 280px;
+
+    max-width: 90%;
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+}
+
+
+
+.game-notification.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateX(-50%) translateY(0);
+
+}
+
+
+
+.game-notification.info { background-color: var(--notification-info); }
+
+.game-notification.success { background-color: var(--notification-success); }
+
+.game-notification.warning { background-color: var(--notification-warning); }
+
+.game-notification.error { background-color: var(--notification-error); }
+
+
+
+#notificationText {
+
+    flex-grow: 1;
+
+    text-align: left;
+
+    font-size: 1.1em;
+
+    line-height: 1.4;
+
+}
+
+
+
+.close-btn {
+
+    background: none;
+
+    border: none;
+
+    color: white;
+
+    font-size: 1.8em;
+
+    cursor: pointer;
+
+    line-height: 1;
+
+    padding: 0 5px;
+
+    transition: transform 0.2s ease, color 0.2s ease;
+
+    opacity: 0.8;
+
+}
+
+
+
+.close-btn:hover {
+
+    transform: scale(1.1);
+
+    color: #f0f0f0;
+
+    opacity: 1;
+
+}
+
+
+
+/* --- DEVELOPER PANEL --- */
+
+#developerAccessToggleContainer {
+
+    text-align: right;
+
+    margin-top: 25px;
+
+}
+
+
+
+#toggleDevPanelBtn {
+
+    background-color: var(--button-utility);
+
+}
+
+
+
+#toggleDevPanelBtn:hover {
+
+    background-color: var(--button-utility-hover);
+
+}
+
+
+
+#developerPanel {
+
+    position: fixed;
+
+    top: 50%;
+
+    left: 50%;
+
+    transform: translate(-50%, -50%) scale(0.95);
+
+    background-color: var(--panel-bg);
+
+    border: 3px solid var(--button-main);
+
+    border-radius: 16px;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+
+    padding: 25px;
+
+    width: 90%;
+
+    max-width: 480px;
+
+    z-index: 999;
+
+    display: none;
+
+    flex-direction: column;
+
+    gap: 18px;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: opacity 0.4s ease-out, visibility 0.4s ease-out, transform 0.4s ease-out;
+
+}
+
+
+
+#developerPanel.active {
+
+    display: flex;
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translate(-50%, -50%) scale(1);
+
+}
+
+
+
+.dev-controls {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: 12px;
+
+    background-color: var(--secondary-bg);
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+    border: 1px solid var(--border-color);
+
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+
+}
+
+
+
+.dev-controls label {
+
+    flex: 1 1 110px;
+
+    font-size: 1em;
+
+    color: var(--button-green);
+
+    text-align: left;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+}
+
+.dev-controls label i {
+
+    color: var(--button-main);
+
+}
+
+
+
+.dev-controls input[type="number"],
+
+.dev-controls input[type="text"] {
+
+    flex: 2 1 180px;
+
+    padding: 10px;
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 6px;
+
+    background-color: var(--primary-bg);
+
+    color: var(--text-color);
+
+    font-size: 1em;
+
+    outline: none;
+
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+
+}
+
+.dev-controls input[type="number"]:focus,
+
+.dev-controls input[type="text"]:focus {
+
+    border-color: var(--button-main);
+
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(var(--button-main-rgb), 0.3);
+
+}
+
+
+
+.dev-controls button {
+
+    flex: 1 1 auto;
+
+    min-width: 70px;
+
+    background-color: var(--button-green);
+
+    color: white;
+
+    padding: 10px 15px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s ease, transform 0.1s ease;
+
+    font-size: 1em;
+
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+}
+
+
+
+.dev-controls button:hover {
+
+    background-color: #27a057;
+
+    transform: translateY(-1px);
+
+}
+
+.dev-controls button:active {
+
+    transform: translateY(0);
+
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+
+}
+
+
+
+.dev-controls p {
+
+    flex: 1 1 100%;
+
+    margin: 0;
+
+    font-size: 1em;
+
+    color: var(--button-green);
+
+    text-align: left;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+}
+
+.dev-controls p i {
+
+    color: var(--button-main);
+
+}
+
+
+
+.dev-gamepass-gifts {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+}
+
+.dev-gamepass-gifts button {
+
+    margin-top: 8px;
+
+    background-color: var(--button-upgrade);
+
+}
+
+.dev-gamepass-gifts button:hover {
+
+    background-color: var(--button-upgrade-hover);
+
+}
+
+
+
+
+
+/* Responsiveness */
+
+@media (max-width: 600px) {
+
+    body {
+
+        padding: 15px;
+
+    }
+
+    .game-container {
+
+        padding: 25px;
+
+        border-radius: 12px;
+
+    }
+
+    h1 {
+
+        font-size: 2.2em;
+
+    }
+
+    .main-click-btn {
+
+        font-size: 1.6em;
+
+        padding: 18px 35px;
+
+    }
+
+    .game-info {
+
+        font-size: 1.3em;
+
+    }
+
+    .upgrade-btn, .utility-btn {
+
+        font-size: 1em;
+
+        padding: 12px 18px;
+
+    }
+
+    .developer-panel {
+
+        padding: 20px;
+
+        border-radius: 12px;
+
+    }
+
+    .dev-controls {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 8px;
+
+    }
+
+    .dev-controls label, .dev-controls p {
+
+        flex: none;
+
+        width: 100%;
+
+        text-align: left;
+
+    }
+
+    .dev-controls input, .dev-controls button {
+
+        flex: none;
+
+        width: 100%;
+
+    }
+
+    .dev-gamepass-gifts button {
+
+        width: 100%;
+
+        margin-left: 0;
+
+    }
+
+    .developer-support {
+
+        top: 10px;
+
+        left: 10px;
+
+        padding: 8px 12px;
+
+        gap: 5px;
+
+    }
+
+    .developer-support p {
+
+        font-size: 0.8em;
+
+    }
+
+    .developer-support a {
+
+        font-size: 0.9em;
+
+        gap: 5px;
+
+    }
+
+    .developer-support a i {
+
+        font-size: 1.1em;
+
+    }
+
+}<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clicker Journey</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div id="developerSupport" class="developer-support">
+
+        <p>Support Developer:</p>
+
+        <a href="https://www.instagram.com/crkayy_" target="_blank" title="Follow me on Instagram">
+
+            <i class="fab fa-instagram"></i> @crkayy_
+
+        </a>
+
+        <a href="https://saweria.co/crkayy" target="_blank" title="Support me on Saweria">
+
+            <i class="fas fa-hand-holding-usd"></i> Saweria
+
+        </a>
+
+        </div>
+
+
+
+    <div class="game-container">
+
+        <h1><i class="fas fa-hand-pointer"></i> Clicker Journey <i class="fas fa-star"></i></h1>
+
+        
+
+        <div class="profile-section">
+
+            <p>Welcome, <span id="playerNameDisplay">Player 1</span>!</p>
+
+            <button id="editProfileBtn" class="utility-btn"><i class="fas fa-user-edit"></i> Edit Profile</button>
+
+        </div>
+
+
+
+        <div class="game-stats">
+
+            <p class="game-info">Score: <span id="scoreDisplay">0</span></p>
+
+            <p class="game-info">Level: <span id="levelDisplay">1</span> | Rebirths: <span id="rebirthsDisplay">0</span></p>
+
+        </div>
+
+
+
+        <button id="clickButton" class="main-click-btn">Click Me!</button>
+
+        <div id="scoreEffectContainer"></div>
+
+
+
+        <div class="upgrades-section">
+
+            <h2><i class="fas fa-rocket"></i> Gamepasses & Upgrades</h2>
+
+            <div class="gamepass-buttons">
+
+                <button id="doubleClickPassBtn" class="upgrade-btn"><i class="fas fa-mouse-pointer"></i> Double Click (x2 Score) - 100 Score</button>
+
+                <button id="megaClickPassBtn" class="upgrade-btn"><i class="fas fa-bolt"></i> Mega Click (x5 Score) - 500 Score</button>
+
+                <button id="autoClickPassBtn" class="upgrade-btn"><i class="fas fa-robot"></i> AutoClick - 1000 Score</button>
+
+            </div>
+
+            <button id="toggleAutoClickBtn" class="utility-btn" style="display: none;"><i class="fas fa-toggle-off"></i> Toggle AutoClick (OFF)</button>
+
+        </div>
+
+
+
+        <div id="rebirthButtonContainer" class="rebirth-section">
+
+            </div>
+
+
+
+        <div id="gameNotification" class="game-notification">
+
+            <span id="notificationText">Ini adalah notifikasi!</span>
+
+            <button id="closeNotificationBtn" class="close-btn">&times;</button>
+
+        </div>
+
+
+
+        <div id="developerAccessToggleContainer">
+
+            <button id="toggleDevPanelBtn" class="utility-btn"><i class="fas fa-terminal"></i> Open Dev Panel</button>
+
+        </div>
+
+
+
+        <div id="developerPanel" class="developer-panel">
+
+            <h3><i class="fas fa-tools"></i> Developer Tools</h3>
+
+            <div class="dev-controls">
+
+                <label for="devTargetUser"><i class="fas fa-user"></i> Target User (current):</label>
+
+                <input type="text" id="devTargetUser" readonly value="Player 1">
+
+            </div>
+
+            <div class="dev-controls">
+
+                <label for="devGiftScore"><i class="fas fa-coins"></i> Gift Score:</label>
+
+                <input type="number" id="devGiftScore" value="1000">
+
+                <button id="devGiftScoreBtn">Gift</button>
+
+            </div>
+
+            <div class="dev-controls">
+
+                <label for="devGiftLevel"><i class="fas fa-trophy"></i> Gift Level:</label>
+
+                <input type="number" id="devGiftLevel" value="1">
+
+                <button id="devGiftLevelBtn">Gift</button>
+
+            </div>
+
+            <div class="dev-controls">
+
+                <label for="devGiftRebirths"><i class="fas fa-infinity"></i> Gift Rebirths:</label>
+
+                <input type="number" id="devGiftRebirths" value="1">
+
+                <button id="devGiftRebirthsBtn">Gift</button>
+
+            </div>
+
+            <div class="dev-controls dev-gamepass-gifts">
+
+                <p><i class="fas fa-ticket-alt"></i> Gift Gamepass:</p>
+
+                <button id="devGiftDoubleClick"><i class="fas fa-mouse-pointer"></i> DoubleClick Pass</button>
+
+                <button id="devGiftMegaClick"><i class="fas fa-bolt"></i> MegaClick Pass</button>
+
+                <button id="devGiftAutoClick"><i class="fas fa-robot"></i> AutoClick Pass</button>
+
+            </div>
+
+            <div class="dev-controls">
+
+                <label for="devMessage"><i class="fas fa-comment-dots"></i> Send Message:</label>
+
+                <input type="text" id="devMessage" placeholder="Pesan untuk pemain...">
+
+                <button id="devSendMessageBtn">Send</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <p class="game-credit">Made with ❤️ by Raka</p>
+
+
+
+    <script src="script.js"></script>
+
+</body>
+
+              </html>
