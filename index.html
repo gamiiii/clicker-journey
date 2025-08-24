@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clicker Journey</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div id="developerSupport" class="developer-support">
+        <p>Support Developer:</p>
+        <a href="https://www.instagram.com/crkayy_" target="_blank" title="Follow me on Instagram">
+            <i class="fab fa-instagram"></i> @crkayy_
+        </a>
+        <a href="https://saweria.co/crkayy" target="_blank" title="Support me on Saweria">
+            <i class="fas fa-hand-holding-usd"></i> Saweria
+        </a>
+        </div>
+
+    <div class="game-container">
+        <h1><i class="fas fa-hand-pointer"></i> Clicker Journey <i class="fas fa-star"></i></h1>
+        
+        <div class="profile-section">
+            <p>Welcome, <span id="playerNameDisplay">Player 1</span>!</p>
+            <button id="editProfileBtn" class="utility-btn"><i class="fas fa-user-edit"></i> Edit Profile</button>
+        </div>
+
+        <div class="game-stats">
+            <p class="game-info">Score: <span id="scoreDisplay">0</span></p>
+            <p class="game-info">Level: <span id="levelDisplay">1</span> | Rebirths: <span id="rebirthsDisplay">0</span></p>
+        </div>
+
+        <button id="clickButton" class="main-click-btn">Click Me!</button>
+        <div id="scoreEffectContainer"></div>
+
+        <div class="upgrades-section">
+            <h2><i class="fas fa-rocket"></i> Gamepasses & Upgrades</h2>
+            <div class="gamepass-buttons">
+                <button id="doubleClickPassBtn" class="upgrade-btn"><i class="fas fa-mouse-pointer"></i> Double Click (x2 Score) - 100 Score</button>
+                <button id="megaClickPassBtn" class="upgrade-btn"><i class="fas fa-bolt"></i> Mega Click (x5 Score) - 500 Score</button>
+                <button id="autoClickPassBtn" class="upgrade-btn"><i class="fas fa-robot"></i> AutoClick - 1000 Score</button>
+            </div>
+            <button id="toggleAutoClickBtn" class="utility-btn" style="display: none;"><i class="fas fa-toggle-off"></i> Toggle AutoClick (OFF)</button>
+        </div>
+
+        <div id="rebirthButtonContainer" class="rebirth-section">
+            </div>
+
+        <div id="gameNotification" class="game-notification">
+            <span id="notificationText">Ini adalah notifikasi!</span>
+            <button id="closeNotificationBtn" class="close-btn">&times;</button>
+        </div>
+
+        <div id="developerAccessToggleContainer">
+            <button id="toggleDevPanelBtn" class="utility-btn"><i class="fas fa-terminal"></i> Open Dev Panel</button>
+        </div>
+
+        <div id="developerPanel" class="developer-panel">
+            <h3><i class="fas fa-tools"></i> Developer Tools</h3>
+            <div class="dev-controls">
+                <label for="devTargetUser"><i class="fas fa-user"></i> Target User (current):</label>
+                <input type="text" id="devTargetUser" readonly value="Player 1">
+            </div>
+            <div class="dev-controls">
+                <label for="devGiftScore"><i class="fas fa-coins"></i> Gift Score:</label>
+                <input type="number" id="devGiftScore" value="1000">
+                <button id="devGiftScoreBtn">Gift</button>
+            </div>
+            <div class="dev-controls">
+                <label for="devGiftLevel"><i class="fas fa-trophy"></i> Gift Level:</label>
+                <input type="number" id="devGiftLevel" value="1">
+                <button id="devGiftLevelBtn">Gift</button>
+            </div>
+            <div class="dev-controls">
+                <label for="devGiftRebirths"><i class="fas fa-infinity"></i> Gift Rebirths:</label>
+                <input type="number" id="devGiftRebirths" value="1">
+                <button id="devGiftRebirthsBtn">Gift</button>
+            </div>
+            <div class="dev-controls dev-gamepass-gifts">
+                <p><i class="fas fa-ticket-alt"></i> Gift Gamepass:</p>
+                <button id="devGiftDoubleClick"><i class="fas fa-mouse-pointer"></i> DoubleClick Pass</button>
+                <button id="devGiftMegaClick"><i class="fas fa-bolt"></i> MegaClick Pass</button>
+                <button id="devGiftAutoClick"><i class="fas fa-robot"></i> AutoClick Pass</button>
+            </div>
+            <div class="dev-controls">
+                <label for="devMessage"><i class="fas fa-comment-dots"></i> Send Message:</label>
+                <input type="text" id="devMessage" placeholder="Pesan untuk pemain...">
+                <button id="devSendMessageBtn">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <p class="game-credit">Made with ❤️ by Raka</p>
+
+    <script src="script.js"></script>
+</body>
+</html>
